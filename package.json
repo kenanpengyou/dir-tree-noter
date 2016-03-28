@@ -1,0 +1,19 @@
+{
+  "name": "dir-tree-noter",
+  "version": "1.0.0",
+  "description": "Generate a proper directory tree codes with comments for you.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenanpengyou/dir-tree-noter.git"
+  },
+  "keywords": [
+    "directory",
+    "tree"
+  ],
+  "author": "Liang Zhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenanpengyou/dir-tree-noter/issues"
+  },
+  "homepage": "https://github.com/kenanpengyou/dir-tree-noter#readme"
+}
