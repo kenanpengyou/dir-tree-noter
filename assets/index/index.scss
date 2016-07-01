@@ -1,7 +1,19 @@
-
-.total-container{
-    width: 400px;
-    min-height: 200px;
-    margin: 20px auto;
-    border: 1px dotted #369;
+.upload-area {
+    height: 300px;
+    padding: 50px 0;
+}
+.form-container {
+    padding-top: 50px;
+    text-align: center;
+}
+.editor-area {
+    position: relative;
+    padding: 50px 0;
+    min-height: 300px;
+}
+.preloader-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

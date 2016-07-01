@@ -1,9 +1,30 @@
-body{
+/* sticky footer */
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
-
 main {
     flex: 1 0 auto;
+}
+
+body {
+    background: #f4f4f4;
+}
+
+html {
+   font-family: Roboto, "Microsoft Yahei", Calibri, Trebuchet, sans-serif;
+}
+
+/* footer */
+.site-footer {
+    height: 50px;
+    line-height: 50px;
+}
+.github-link {
+    width: 32px;
+    height: 32px;
+    margin: 9px 0 0 0;
+    background: url(./github_logo.svg) no-repeat;
+    background-size: 100% auto;
 }

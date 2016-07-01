@@ -2,6 +2,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var productionConfig = [{
     entry: './assets/index',
@@ -18,7 +19,7 @@ var productionConfig = [{
             loader: 'url?limit=8192&context=assets&name=[path][name]_[hash:12].[ext]'
         }, {
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
+            loader: ExtractTextPlugin.extract('style', 'css!postcss!resolve-url!sass?sourceMap')
         }, {
             test: /\.js$/,
             loader: 'babel',
@@ -35,6 +36,9 @@ var productionConfig = [{
         new HtmlWebpackPlugin({
             template: './index.ejs'
         })
+    ],
+    postcss: [
+        autoprefixer({browsers: ["Android >= 4.0", "iOS >= 7.0", "Chrome > 31", "ff > 31", "ie >= 10"]})
     ]
 }];
 
