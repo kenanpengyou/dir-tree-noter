@@ -3,17 +3,14 @@ import "./index.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 import App from "../components/App";
-
-// React.render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById("root")
-// );
+import appReducer from "../reducers/app";
 
 ReactDOM.render(
-  <App/>,
-  document.getElementById("root")
+    <Provider store={createStore(appReducer)}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
 );

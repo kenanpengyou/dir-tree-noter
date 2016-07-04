@@ -1,11 +1,29 @@
+
+/* upload */
 .upload-area {
-    height: 300px;
-    padding: 50px 0;
+    padding: 20px 0;
 }
-.form-container {
-    padding-top: 50px;
+.drop-container {
+    padding-top: 20px;
+}
+.drop-box{
+    height: 180px;
+    border: 5px dashed #5d4037;
+
+}
+.drop-box.active{
+    border-color: #ff6e40;
+}
+.drop-label{
+    width: 100%;
     text-align: center;
+    font-size: 18px;
+    cursor: default;
+    pointer-events: none;
 }
+
+
+/* editor */
 .editor-area {
     position: relative;
     padding: 50px 0;
