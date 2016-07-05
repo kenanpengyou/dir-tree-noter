@@ -1,38 +1,15 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {detectDrop, loadingDrop, completeDrop} from "../actions";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isBoxActive: false
-        };
-    }
-
-    handleDrop() {
-
-    }
-
-    handleDragEnter(e) {
-        e.preventDefault();
-        this.setState({
-            isBoxActive: true
-        });
-    }
-
-    handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    handleDragLeave(e) {
-        this.setState({
-            isBoxActive: false
-        });
-    }
-
     render() {
-        const {title} = this.props;
+        const {
+            isBoxActive,
+            handleDragEnter, handleDragOver, handleDragLeave, handleDrop
+        } = this.props;
         let boxClass = "drop-box valign-wrapper";
-        if(this.state.isBoxActive){
+        if(isBoxActive){
             boxClass += " active";
         }
         return (
@@ -41,7 +18,7 @@ class Header extends Component {
                     <h2 className="center-align grey-text text-lighten-2">dir tree noter</h2>
                     <div className="row drop-container">
                         <div className="col s12 m6 l4 offset-m3 offset-l4">
-                            <div className={boxClass} onDragEnter={this.handleDragEnter.bind(this)} onDragOver={this.handleDragOver.bind(this)} onDragLeave={this.handleDragLeave.bind(this)} onDrop={this.handleDrop.bind(this)}>
+                            <div className={boxClass} onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
                                 <div className="drop-label valign brown-text text-lighten-2">drop your dir here</div>
                             </div>
                         </div>
@@ -52,4 +29,30 @@ class Header extends Component {
     }
 }
 
-export default Header;
+function mapStateToProps(state) {
+    const uploadState = state.upload;
+    return {
+        isBoxActive: uploadState.isBoxActive
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+
+    return {
+        handleDragEnter: (e) => {
+            e.preventDefault();
+            dispatch(detectDrop(true));
+        },
+        handleDragOver: (e) => {
+            e.preventDefault();
+        },
+        handleDragLeave: (e) => {
+            dispatch(detectDrop(false));
+        },
+        handleDrop: (e) => {
+            
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

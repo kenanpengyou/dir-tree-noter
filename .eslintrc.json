@@ -18,6 +18,7 @@
     "rules": {
         "react/prop-types": 0,
         "no-unused-vars": 0,
+        "no-console": 1,
         "semi": [
             2,
             "always"

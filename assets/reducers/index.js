@@ -3,8 +3,6 @@ import { combineReducers } from "redux";
 import upload from "./upload";
 import editor from "./editor";
 
-const app = combineReducers({
+export default combineReducers({
     upload, editor
 });
-
-export default app;

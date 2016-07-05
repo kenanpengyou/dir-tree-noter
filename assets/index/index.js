@@ -3,13 +3,12 @@ import "./index.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
 import App from "../components/App";
-import appReducer from "../reducers/app";
+import store from "../store";
 
 ReactDOM.render(
-    <Provider store={createStore(appReducer)}>
+    <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById("root")
