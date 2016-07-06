@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var autoprefixer = require('autoprefixer');
@@ -27,6 +28,10 @@ var productionConfig = [{
         }]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new CleanWebpackPlugin(['public'], {
             verbose: true
         }),
@@ -38,7 +43,9 @@ var productionConfig = [{
         })
     ],
     postcss: [
-        autoprefixer({browsers: ["Android >= 4.0", "iOS >= 7.0", "Chrome > 31", "ff > 31", "ie >= 10"]})
+        autoprefixer({
+            browsers: ['Android >= 4.0', 'iOS >= 7.0', 'Chrome > 31', 'ff > 31', 'ie >= 10']
+        })
     ]
 }];
 

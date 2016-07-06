@@ -3,6 +3,14 @@ import {connect} from "react-redux";
 import {detectDrop, loadingDrop, completeDrop} from "../actions";
 
 class Header extends Component {
+    constructor(props) {
+    super(props);
+
+    this.handleDragEnter = this.handleDragEnter.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+  }
 
     handleDragEnter(e) {
         e.preventDefault();
@@ -32,10 +40,10 @@ class Header extends Component {
                     <h2 className="center-align grey-text text-lighten-2">dir tree noter</h2>
                     <div className="row drop-container">
                         <div className="col s12 m6 l4 offset-m3 offset-l4">
-                            <div className={boxClass} onDragEnter={this.handleDragEnter.bind(this)}
-                             onDragOver={this.handleDragOver.bind(this)}
-                              onDragLeave={this.handleDragLeave.bind(this)}
-                               onDrop={this.handleDrop.bind(this)}>
+                            <div className={boxClass} onDragEnter={this.handleDragEnter}
+                             onDragOver={this.handleDragOver}
+                              onDragLeave={this.handleDragLeave}
+                               onDrop={this.handleDrop}>
                                 <div className="drop-label valign brown-text text-lighten-2">drop your dir here</div>
                             </div>
                         </div>

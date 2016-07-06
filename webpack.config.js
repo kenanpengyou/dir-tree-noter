@@ -21,7 +21,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-            loader: "file?name=fonts/[name].[ext]"
+            loader: 'file?name=fonts/[name].[ext]'
         }, {
             test: /\.(png|jpg)$/,
             loader: 'url?limit=8192&context=assets&name=[path][name].[ext]'
@@ -35,13 +35,21 @@ module.exports = {
         }]
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new HtmlWebpackPlugin({
-          template: './index.ejs'
-      }),
-      new OpenBrowserPlugin({ url: publicPath })
-  ],
-  postcss: [
-      autoprefixer({browsers: ["Android >= 4.0", "iOS >= 7.0", "Chrome > 31", "ff > 31", "ie >= 10"]})
-  ]
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: './index.ejs'
+        }),
+        new OpenBrowserPlugin({
+            url: publicPath
+        })
+    ],
+    postcss: [
+        autoprefixer({
+            browsers: ['Android >= 4.0', 'iOS >= 7.0', 'Chrome > 31', 'ff > 31', 'ie >= 10']
+        })
+    ]
 };
