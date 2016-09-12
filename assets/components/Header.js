@@ -1,16 +1,17 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {detectDrop, loadingDrop, completeDrop} from "../actions";
+import dirReader from "../helpers/dirReader";
 
 class Header extends Component {
     constructor(props) {
-    super(props);
+        super(props);
 
-    this.handleDragEnter = this.handleDragEnter.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
-    this.handleDragLeave = this.handleDragLeave.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-  }
+        this.handleDragEnter = this.handleDragEnter.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
+        this.handleDragLeave = this.handleDragLeave.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
+    }
 
     handleDragEnter(e) {
         e.preventDefault();
@@ -25,7 +26,16 @@ class Header extends Component {
     }
 
     handleDrop(e) {
+        var readCallback = function(event, formData, files){
+            console.log("event = ", event);
+            console.log("formData = ", formData);
+            console.log("files = ", files);
+        },
+        dt = e.dataTransfer;
+
         this.props.loading();
+        e.preventDefault();
+        dirReader.exec(e, dt, readCallback);
     }
 
     render() {
