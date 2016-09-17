@@ -58,15 +58,15 @@ function growBranch(key, root, last, lastStates, callback) {
 }
 
 treeify.exec = function(obj) {
-    var tree = "",
+    var tree = " ",
         keys = Object.keys(obj),
         properObj;
 
     if(keys.length <= 1){
-        tree = keys[0];
+        tree += keys[0];
         properObj = obj[keys[0]];
     }else{
-        tree = ".";
+        tree += ".";
         properObj = obj;
     }
 

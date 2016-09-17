@@ -22,7 +22,6 @@
     pointer-events: none;
 }
 
-
 /* editor */
 .editor-area {
     position: relative;
@@ -42,6 +41,8 @@ content-container{
     margin-bottom: 10px;
 }
 .editor-content{
+    min-height: 150px;
+
     pre{
         padding: 10px;
         white-space: pre;

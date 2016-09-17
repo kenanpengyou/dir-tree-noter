@@ -9,23 +9,35 @@ class Editor extends Component {
   }
 
   render(){
-    const {isLoading} = this.props;
+    var {isLoading, isComplete} = this.props;
+    var editorMain = null;
+
+    if(isComplete){
+        editorMain = (
+            <div className="editor-main">
+                <div className="content-container">
+                    <EditorContent />
+                </div>
+                <div className="download-container center-align">
+                    <a className="waves-effect waves-light btn-large pink darken-3 z-depth-2"><i className="material-icons left">done</i>下载</a>
+                </div>
+                <div className="preloader-container valign-wrapper">
+                  <div className="valign">
+                      { isLoading ? <Preloader /> : null }
+                  </div>
+                </div>
+            </div>
+        );
+    }else{
+        editorMain = null;
+    }
+
     return (
         <div className="container editor-area">
             <div className="config-container right-align">
                 <a className="waves-effect waves-light btn light-blue darken-3" href="#modal1"><i className="material-icons left">settings</i>配置</a>
             </div>
-            <div className="content-container">
-                <EditorContent />
-            </div>
-            <div className="download-container center-align">
-                <a className="waves-effect waves-light btn-large pink darken-3 z-depth-2"><i className="material-icons left">done</i>下载</a>
-            </div>
-            <div className="preloader-container valign-wrapper">
-              <div className="valign">
-                  { isLoading ? <Preloader /> : null }
-              </div>
-            </div>
+            { editorMain }
         </div>
     );
   }
@@ -33,7 +45,8 @@ class Editor extends Component {
 
 function mapStateToProps(state) {
     return {
-        isLoading: state.upload.isLoading
+        isLoading: state.upload.isLoading,
+        isComplete: state.upload.isComplete
     };
 }
 

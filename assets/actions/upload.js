@@ -5,16 +5,17 @@ const detectDrop = function(isOver){
     };
 };
 
-const completeDrop = () => ({
-    type: "COMPLETE_DROP"
-});
-
 const loadingDrop = () => ({
     type: "LOADING_DROP"
 });
 
+const finishRead = (output) => ({
+    type: "FINISH_READ",
+    output: output
+});
+
 export default {
     detectDrop,
-    completeDrop,
-    loadingDrop
+    loadingDrop,
+    finishRead
 };

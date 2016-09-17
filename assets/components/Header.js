@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {detectDrop, loadingDrop, completeDrop} from "../actions";
+import {detectDrop, loadingDrop, finishRead} from "../actions";
 import dirReader from "../helpers/dirReader";
 import treeify from "../helpers/treeify";
 
@@ -28,18 +28,14 @@ class Header extends Component {
 
     handleDrop(e) {
         var readCallback = function(event, files, trees){
-            console.log("event = ", event);
-            console.log("files = ", files);
-            console.log("trees = ", trees);
-            var treeString = treeify.exec(trees, true);
-            console.log("treeString = \n", treeString);
-
+            var treeString = treeify.exec(trees);
+            this.props.finish(treeString);
         },
         dt = e.dataTransfer;
 
         this.props.loading();
         e.preventDefault();
-        dirReader.exec(e, dt, readCallback);
+        dirReader.exec(e, dt, readCallback.bind(this));
     }
 
     render() {
@@ -78,7 +74,8 @@ function mapDispatchToProps(dispatch) {
     return {
         dragOver: () => dispatch(detectDrop(true)),
         dragOut: () => dispatch(detectDrop(false)),
-        loading: () => dispatch(loadingDrop())
+        loading: () => dispatch(loadingDrop()),
+        finish: (output) => dispatch(finishRead(output))
     };
 }
 
