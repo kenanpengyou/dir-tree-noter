@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {detectDrop, loadingDrop, completeDrop} from "../actions";
 import dirReader from "../helpers/dirReader";
+import treeify from "../helpers/treeify";
 
 class Header extends Component {
     constructor(props) {
@@ -26,10 +27,13 @@ class Header extends Component {
     }
 
     handleDrop(e) {
-        var readCallback = function(event, formData, files){
+        var readCallback = function(event, files, trees){
             console.log("event = ", event);
-            console.log("formData = ", formData);
             console.log("files = ", files);
+            console.log("trees = ", trees);
+            var treeString = treeify.exec(trees, true);
+            console.log("treeString = \n", treeString);
+
         },
         dt = e.dataTransfer;
 
