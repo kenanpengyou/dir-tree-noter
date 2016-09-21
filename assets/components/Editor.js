@@ -5,43 +5,53 @@ import EditorContent from "./EditorContent";
 
 class Editor extends Component {
 
-  componentDidMount() {
-  }
+    constructor(props) {
+        super(props);
 
-  render(){
-    var {isLoading, isComplete} = this.props;
-    var editorMain = null;
-
-    if(isComplete){
-        editorMain = (
-            <div className="editor-main">
-                <div className="content-container">
-                    <EditorContent />
-                </div>
-                <div className="download-container center-align">
-                    <a className="waves-effect waves-light btn-large pink darken-3 z-depth-2"><i className="material-icons left">done</i>下载</a>
-                </div>
-                <div className="preloader-container valign-wrapper">
-                  <div className="valign">
-                      { isLoading ? <Preloader /> : null }
-                  </div>
-                </div>
-            </div>
-        );
-    }else{
-        editorMain = null;
+        this.handleOptionsClick = this.handleOptionsClick.bind(this);
     }
 
-    return (
-        <div className="container editor-area">
-            <div className="config-container right-align">
-                <a className="waves-effect waves-light btn light-blue darken-3" href="#modal1"><i className="material-icons left">settings</i>配置</a>
+    componentDidMount() {
+    }
+
+    handleOptionsClick(e) {
+        this.props.handleShowOptions();
+    }
+
+    render(){
+        var {isLoading, isComplete} = this.props;
+        var editorMain = null;
+
+        if(isComplete){
+            editorMain = (
+                <div className="editor-main">
+                    <div className="content-container">
+                        <EditorContent />
+                    </div>
+                    <div className="download-container center-align">
+                        <a className="waves-effect waves-light btn-large pink darken-3 z-depth-2"><i className="material-icons left">done</i>下载</a>
+                    </div>
+                    <div className="preloader-container valign-wrapper">
+                      <div className="valign">
+                          { isLoading ? <Preloader /> : null }
+                      </div>
+                    </div>
+                </div>
+            );
+        }else{
+            editorMain = null;
+        }
+
+        return (
+            <div className="container editor-area">
+                <div className="config-container right-align">
+                    <a className="waves-effect waves-light btn light-blue darken-3" onClick={this.handleOptionsClick}><i className="material-icons left">settings</i>配置</a>
+                </div>
+                { editorMain }
             </div>
-            { editorMain }
-        </div>
-    );
-  }
-}
+        );
+        }
+    }
 
 function mapStateToProps(state) {
     return {

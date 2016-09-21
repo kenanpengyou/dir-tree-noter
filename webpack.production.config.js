@@ -3,6 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var productionConfig = [{
@@ -28,10 +29,6 @@ var productionConfig = [{
         }]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        }),
         new CleanWebpackPlugin(['public'], {
             verbose: true
         }),
@@ -40,7 +37,10 @@ var productionConfig = [{
         }),
         new HtmlWebpackPlugin({
             template: './index.ejs'
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'vendor'}
+        ])
     ],
     postcss: [
         autoprefixer({

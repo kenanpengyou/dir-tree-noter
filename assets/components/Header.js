@@ -29,6 +29,7 @@ class Header extends Component {
     handleDrop(e) {
         var readCallback = function(event, files, trees){
             var treeString = treeify.exec(trees);
+            console.log("[finish]trees = ", trees);
             this.props.finish(treeString);
         },
         dt = e.dataTransfer;

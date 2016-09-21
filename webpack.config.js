@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
@@ -35,14 +36,13 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: './index.ejs'
         }),
+        new CopyWebpackPlugin([
+            { from: 'vendor'}
+        ]),
         new OpenBrowserPlugin({
             url: publicPath
         })

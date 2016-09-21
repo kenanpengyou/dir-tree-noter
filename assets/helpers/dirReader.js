@@ -4,9 +4,22 @@
 
 var dirReader = {};
 
+var createFileValue = function(trees, path, fileName){
+    var partArray = path.split("/"),
+    obj = trees;
+
+    partArray.forEach(function(part){
+        obj[part] = obj[part] || {};
+        obj = obj[part];
+    });
+
+    obj[fileName] = "file";
+};
+
  // API implemented in Firefox 42+ and Edge
  var newDirectoryApi = function(input, cb) {
-     var files = [];
+     var files = [],
+         trees = {};
      var iterate = function(entries, path, resolve) {
          var promises = [];
          entries.forEach(function(entry) {
@@ -19,6 +32,7 @@ var dirReader = {};
                      if (entry.name) {
                          var p = (path + entry.name).replace(/^[\/\\]/, "");
                          files.push(p);
+                         createFileValue(trees, path, entry.name);
                      }
                      resolve();
                  }
@@ -29,7 +43,7 @@ var dirReader = {};
      input.getFilesAndDirectories().then(function(entries) {
          new Promise(function(resolve) {
              iterate(entries, "/", resolve);
-         }).then(cb.bind(null, files));
+         }).then(cb.bind(null, files, trees));
      });
  };
 
@@ -38,17 +52,6 @@ var dirReader = {};
      var files = [],
          trees = {},
          rootPromises = [];
-
-     // "page1/icons" → trees.page1.icons = {};
-     function createPathNamespace(path){
-         var partArray = path.split("/"),
-         obj = trees;
-
-         partArray.forEach(function(part){
-             obj[part] = obj[part] || {};
-             obj = obj[part];
-         });
-     }
 
      function readEntries(entry, reader, oldEntries, cb) {
          var dirReader = reader || entry.createReader();
@@ -64,7 +67,6 @@ var dirReader = {};
 
      function readDirectory(entry, path, resolve) {
          if (!path) path = entry.name;
-         createPathNamespace(path);
          readEntries(entry, 0, 0, function(entries) {
              var promises = [];
              entries.forEach(function(entry) {
@@ -73,7 +75,7 @@ var dirReader = {};
                          entry.file(function(file) {
                              var p = path + "/" + file.name;
                              files.push(p);
-                             trees[path][file.name] = trees[path][file.name] || "file";
+                             createFileValue(trees, path, entry.name);
                              resolve();
                          }, resolve.bind());
                      } else {
@@ -114,8 +116,6 @@ var arrayApi = function(input, cb) {
 };
 
 dirReader.exec = function(event, input, cb) {
-    console.log("[exec] ", input.items);
-    console.log("[exec] ", input.items.length);
     if ("getFilesAndDirectories" in input) {
         newDirectoryApi(input, cb.bind(null, event));
     } else if (input.items && input.items.length && "webkitGetAsEntry" in input.items[0]) {
