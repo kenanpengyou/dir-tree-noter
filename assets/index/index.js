@@ -13,5 +13,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("root")
 );
-
-$("select").material_select();

@@ -50,8 +50,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "jquery": "^3.0.0",
-    "materialize-css": "^0.97.6",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
