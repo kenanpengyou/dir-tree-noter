@@ -6,6 +6,7 @@ class OptionsModal extends Component {
     constructor(props) {
         super(props);
 
+        this.depth = this.props.depth;
         this.handleConfirmClick = this.handleConfirmClick.bind(this);
         this.handleResetClick = this.handleResetClick.bind(this);
     }
@@ -14,8 +15,16 @@ class OptionsModal extends Component {
         $(this.refs.modal).openModal();
     }
 
-    handleConfirmClick(e){
+    handleResetClick(e){
+        console.log("[handleResetClick]");
+    }
 
+    handleConfirmClick(e){
+        console.log("[handleConfirmClick]");
+    }
+
+    handleRangeChange(e){
+        console.log("[handleRangeChange]e = ", e);
     }
 
     render(){
@@ -35,10 +44,10 @@ class OptionsModal extends Component {
                     </div>
                 </div>
                 <div className="input-field">
-                    <div className="field-text">目录最大深度<strong className="depth-number">{}</strong></div>
+                    <div className="field-text">目录最大深度<strong className="depth-number">{this.depth}</strong></div>
                     <div className="field-line">
                         <p className="range-field">
-                          <input type="range" min="1" max="10" defaultValue="3" />
+                          <input type="range" min="1" max="10" defaultValue="3" onChange={this.handleRangeChange} />
                         </p>
                     </div>
                 </div>
@@ -55,7 +64,7 @@ class OptionsModal extends Component {
 
 function mapStateToProps(state) {
     return {
-        isBoxActive: state.upload.isBoxActive
+        depth: state.option.depth
     };
 }
 
