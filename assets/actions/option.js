@@ -1,10 +1,5 @@
-const setDepth = (value) => ({
-    type: "SET_DEPTH",
-    value
-});
-
-const setIndent = (value) => ({
-    type: "SET_INDENT",
+const submitDisplay = (value) => ({
+    type: "SUBMIT_DISPLAY",
     value
 });
 
@@ -27,6 +22,6 @@ const restoreDisplay = () => ({
 });
 
 export default {
-    setDepth, setIndent, setDepthDisplay,
+    submitDisplay, setDepthDisplay,
     setIndentDisplay, resetOptionDisplay, restoreDisplay
 };

@@ -10,19 +10,13 @@ export default function(state = initialState, action) {
         actual = Object.assign({}, state.actual);
 
     switch (action.type) {
-        case "SET_DEPTH":
+
+        // submit: assign "actual" with "display"
+        case "SUBMIT_DISPLAY":
+            actual = Object.assign({}, display);
             return {
                 display,
-                actual: Object.assign(actual, {
-                    depth: action.value
-                })
-            };
-        case "SET_INDENT":
-            return {
-                display,
-                actual: Object.assign(actual, {
-                    indent: action.value
-                })
+                actual
             };
         case "SET_DEPTH_DISPLAY":
             return {

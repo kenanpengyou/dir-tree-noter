@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {setDepth, setDepthDisplay, setIndent, setIndentDisplay,
+import {submitDisplay, setDepthDisplay, setIndentDisplay,
     resetOptionDisplay, restoreDisplay} from "../actions";
 
 class OptionsModal extends Component {
@@ -33,7 +33,7 @@ class OptionsModal extends Component {
     }
 
     handleConfirmClick(e){
-        console.log("[handleConfirmClick]");
+        this.props.submitDisplay();
     }
 
     handleRangeChange(e){
@@ -94,8 +94,7 @@ function mapDispatchToProps(dispatch) {
     return {
         changeDepthDisplay: (value) => dispatch(setDepthDisplay(value)),
         changeIndentDisplay: (value) => dispatch(setIndentDisplay(value)),
-        changeDepth: (value) => dispatch(setDepth(value)),
-        changeIndent: (value) => dispatch(setIndent(value)),
+        submitDisplay: (value) => dispatch(submitDisplay(value)),
         resetOptionDisplay: () => dispatch(resetOptionDisplay()),
         restoreDisplay: () => dispatch(restoreDisplay())
     };
