@@ -12,7 +12,7 @@ class App extends Component {
     }
 
     showOptions(){
-        this.refs.optionsModal.showModal();
+        this.refs.optionsModal.getWrappedInstance().showModal();
     }
 
     render(){

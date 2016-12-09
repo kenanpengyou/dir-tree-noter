@@ -1,9 +1,11 @@
 import uploadActions from "./upload";
 import editorActions from "./editor";
-import optionsAction from "./editor";
+import optionAction from "./option";
+import optionDisplayAction from "./optionDisplay";
 
 module.exports = Object.assign({},
     uploadActions,
     editorActions,
-    optionsAction
+    optionAction,
+    optionDisplayAction
 );

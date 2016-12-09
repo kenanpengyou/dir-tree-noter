@@ -3,6 +3,11 @@ const setDepth = (value) => ({
     value
 });
 
+const setIndent = (value) => ({
+    type: "SET_INDENT",
+    value
+});
+
 export default {
-    setDepth
+    setDepth, setIndent
 };
