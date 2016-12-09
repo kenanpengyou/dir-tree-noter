@@ -85,8 +85,8 @@ class OptionsModal extends Component {
 
 function mapStateToProps(state) {
     return {
-        depth: state.optionDisplay.depth,
-        indent: state.optionDisplay.indent
+        depth: state.option.display.depth,
+        indent: state.option.display.indent
     };
 }
 
