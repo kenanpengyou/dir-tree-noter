@@ -7,7 +7,7 @@ class EditorContent extends Component {
         return (
             <div className="editor-content brown lighten-5">
                 <pre>
-                    <code>
+                    <code ref="code">
                         {content}
                     </code>
                 </pre>
@@ -22,4 +22,6 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(EditorContent);
+export default connect(mapStateToProps, null, null, {
+    withRef: true
+})(EditorContent);

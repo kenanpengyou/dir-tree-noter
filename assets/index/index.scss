@@ -59,6 +59,22 @@
         font-family: inherit;
     }
 }
+.btn-copy{
+    background: #ad1457;
+
+    &:hover,
+    &:focus{
+        background: #c2185b;
+    }
+}
+.btn-option{
+    background: #1976d2;
+
+    &:hover,
+    &:focus{
+        background: #1e88e5;
+    }
+}
 
 /* option modal */
 .input-field{
