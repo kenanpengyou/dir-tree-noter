@@ -46,9 +46,6 @@ class OptionsModal extends Component {
 
     render(){
         const {depth, indent} = this.props;
-
-        console.log("[OptionsModal render] indent = ", indent);
-
         return (
         <div ref="modal" className="modal">
             <div className="modal-content">

@@ -16,6 +16,9 @@
     "plugins": [
         "react"
     ],
+    "globals": {
+        "Materialize": true
+    },
     "rules": {
         "react/prop-types": 0,
         "no-unused-vars": 0,

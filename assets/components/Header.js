@@ -27,16 +27,28 @@ class Header extends Component {
     }
 
     handleDrop(e) {
-        var readCallback = function(event, files, trees){
-            var treeString = treeify.exec(trees);
-            console.log("[finish]trees = ", trees);
-            this.props.finish(treeString);
-        },
-        dt = e.dataTransfer;
+        const {maxDepth, indentType} = this.props,
+        dt = e.dataTransfer,
+        readCallback = function(files, trees){
+
+            if(typeof trees === "object"){
+                let treeString = treeify.exec(trees, indentType);
+                console.log("[finish]trees = ", trees);
+                this.props.finish(treeString);
+            }else{
+
+                // todo: i18n
+                Materialize.toast("不支持的浏览器", 4000);
+                this.props.finish(">_<");
+            }
+        };
 
         this.props.loading();
         e.preventDefault();
-        dirReader.exec(e, dt, readCallback.bind(this));
+        dirReader.exec(dt, {
+            maxDepth,
+            onComplete: readCallback.bind(this)
+        });
     }
 
     render() {
@@ -67,7 +79,9 @@ class Header extends Component {
 
 function mapStateToProps(state) {
     return {
-        isBoxActive: state.upload.isBoxActive
+        isBoxActive: state.upload.isBoxActive,
+        maxDepth: state.option.actual.depth,
+        indentType: state.option.actual.indent
     };
 }
 
