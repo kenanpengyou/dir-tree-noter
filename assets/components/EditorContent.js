@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 class EditorContent extends Component {
+
+    getContent() {
+        return this.props.content;
+    }
+
     render(){
         const {content} = this.props;
         return (

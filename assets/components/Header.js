@@ -12,6 +12,7 @@ class Header extends Component {
         this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDrop = this.handleDrop.bind(this);
+        this.cacheData = null;
     }
 
     handleDragEnter(e) {
@@ -45,6 +46,7 @@ class Header extends Component {
 
         this.props.loading();
         e.preventDefault();
+        this.cacheData = dt;
         dirReader.exec(dt, {
             maxDepth,
             onComplete: readCallback.bind(this)
