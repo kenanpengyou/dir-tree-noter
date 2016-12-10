@@ -22,7 +22,7 @@ function growBranch(key, root, last, lastStates, callback) {
       // we need to append either blankness or a branch to our line
       lastStates.forEach(function(lastState, idx) {
         if (idx > 0) {
-            line += (lastState[1] ? " " : "│") + treeify.indentString;
+            line += (lastState[1] ? treeify.firstLetter : "│") + treeify.indentString;
         }
         if ( ! circular && lastState[0] === root) {
           circular = true;
@@ -65,7 +65,13 @@ treeify.exec = function(obj, indentType) {
         properObj = obj;
     }
 
-    treeify.indentString = indentType === "tab" ? "\t" : "   ";
+    if(indentType === "tab"){
+        treeify.indentString = "\t" ;
+        treeify.firstLetter = " ";
+    }else{
+        treeify.indentString = "    " ;
+        treeify.firstLetter = "   ";
+    }
 
     tree += "\n";
     growBranch(".", properObj, false, [], function(line) {

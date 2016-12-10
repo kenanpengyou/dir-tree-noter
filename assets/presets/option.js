@@ -1,5 +1,5 @@
 const optionDefault = {
-    indent: "tab",
+    indent: "space",
     depth: 3
 };
 
