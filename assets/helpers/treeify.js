@@ -17,17 +17,12 @@ function makePrefix(key, last) {
 function growBranch(key, root, last, lastStates, callback) {
     var line = "", index = 0, lastKey, circular, lastStatesCopy = lastStates.slice(0);
 
-    // console.log("[growBranch] key = ", key);
-    // console.log("[growBranch] root = ", root);
-    // console.log("[growBranch] last = ", last);
-    // console.log("[growBranch] lastStates = ", lastStates);
-
     if (lastStatesCopy.push([ root, last ]) && lastStates.length > 0) {
       // based on the "was last element" states of whatever we"re nested within,
       // we need to append either blankness or a branch to our line
       lastStates.forEach(function(lastState, idx) {
         if (idx > 0) {
-            line += (lastState[1] ? "   " : "│") + "   ";
+            line += (lastState[1] ? " " : "│") + treeify.indentString;
         }
         if ( ! circular && lastState[0] === root) {
           circular = true;
@@ -69,6 +64,8 @@ treeify.exec = function(obj, indentType) {
         tree += ".";
         properObj = obj;
     }
+
+    treeify.indentString = indentType === "tab" ? "\t" : "   ";
 
     tree += "\n";
     growBranch(".", properObj, false, [], function(line) {
