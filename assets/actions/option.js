@@ -21,7 +21,11 @@ const restoreDisplay = () => ({
     type: "RESTORE_OPTION_DISPLAY"
 });
 
+const refreshReader = () => ({
+    type: "REFRESH_READER"
+});
+
 export default {
     submitDisplay, setDepthDisplay,
-    setIndentDisplay, resetOptionDisplay, restoreDisplay
+    setIndentDisplay, resetOptionDisplay, restoreDisplay, refreshReader
 };

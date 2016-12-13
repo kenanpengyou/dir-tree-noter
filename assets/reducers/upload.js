@@ -1,7 +1,8 @@
 const initialState = {
     isBoxActive: false,
     isLoading: false,
-    isComplete: false
+    isComplete: false,
+    needRefresh: false
 };
 
 export default function(state = initialState, action) {
@@ -18,7 +19,12 @@ export default function(state = initialState, action) {
         case "FINISH_READ":
             return Object.assign({}, state, {
                 isLoading: false,
-                isComplete: true
+                isComplete: true,
+                needRefresh: false
+            });
+        case "REFRESH_READER":
+            return Object.assign({}, state, {
+                needRefresh: true
             });
         default:
             return state;

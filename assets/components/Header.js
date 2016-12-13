@@ -12,7 +12,43 @@ class Header extends Component {
         this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDrop = this.handleDrop.bind(this);
-        this.cacheData = null;
+        this.lastTrees = null;
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.needRefresh && this.props.isComplete &&
+             this.props.indentType !== nextProps.indentType){
+            this.publishTrees(this.lastTrees, nextProps);
+        }
+    }
+
+    publishTrees(trees, nextProps){
+        const {indentType} = nextProps || this.props;
+
+        if(trees instanceof Object){
+            let treeString = treeify.exec(trees, indentType);
+            this.props.finish(treeString);
+            this.lastTrees = trees;
+        }else{
+
+            // todo: i18n
+            Materialize.toast("不支持的浏览器", 4000);
+            this.props.finish(">_<");
+            this.lastTrees = null;
+        }
+    }
+
+    execReader(dataTransfer) {
+        const {maxDepth} = this.props,
+        readCallback = function(files, trees){
+            this.publishTrees(trees);
+        };
+
+        this.props.loading();
+        dirReader.exec(dataTransfer, {
+            maxDepth,
+            onComplete: readCallback.bind(this)
+        });
     }
 
     handleDragEnter(e) {
@@ -28,29 +64,8 @@ class Header extends Component {
     }
 
     handleDrop(e) {
-        const {maxDepth, indentType} = this.props,
-        dt = e.dataTransfer,
-        readCallback = function(files, trees){
-
-            if(typeof trees === "object"){
-                let treeString = treeify.exec(trees, indentType);
-                console.log("[finish]trees = ", trees);
-                this.props.finish(treeString);
-            }else{
-
-                // todo: i18n
-                Materialize.toast("不支持的浏览器", 4000);
-                this.props.finish(">_<");
-            }
-        };
-
-        this.props.loading();
         e.preventDefault();
-        this.cacheData = dt;
-        dirReader.exec(dt, {
-            maxDepth,
-            onComplete: readCallback.bind(this)
-        });
+        this.execReader(e.dataTransfer);
     }
 
     render() {
@@ -83,7 +98,9 @@ function mapStateToProps(state) {
     return {
         isBoxActive: state.upload.isBoxActive,
         maxDepth: state.option.actual.depth,
-        indentType: state.option.actual.indent
+        indentType: state.option.actual.indent,
+        needRefresh: state.upload.needRefresh,
+        isComplete: state.upload.isComplete
     };
 }
 

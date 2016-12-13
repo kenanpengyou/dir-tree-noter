@@ -57,8 +57,6 @@ class Editor extends Component {
                     </div>
                 </div>
             );
-        }else{
-            editorMain = null;
         }
 
         return (

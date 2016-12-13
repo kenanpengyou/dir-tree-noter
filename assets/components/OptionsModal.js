@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {submitDisplay, setDepthDisplay, setIndentDisplay,
-    resetOptionDisplay, restoreDisplay} from "../actions";
+    resetOptionDisplay, restoreDisplay, refreshReader} from "../actions";
 
 class OptionsModal extends Component {
     constructor(props) {
@@ -34,10 +34,11 @@ class OptionsModal extends Component {
 
     handleConfirmClick(e){
         this.props.submitDisplay();
+        this.props.refreshReader();
     }
 
     handleRangeChange(e){
-        this.props.changeDepthDisplay(e.target.value);
+        this.props.changeDepthDisplay(+e.target.value);
     }
 
     handleIndentChange(e){
@@ -45,7 +46,15 @@ class OptionsModal extends Component {
     }
 
     render(){
-        const {depth, indent} = this.props;
+        const {depth, indent, actualDepth} = this.props;
+        var depthNote = null;
+
+        if(actualDepth !== depth){
+            depthNote = (
+                <span className="option-note orange-text">← 此项变更需要重新丢入目录以生效</span>
+            );
+        }
+
         return (
         <div ref="modal" className="modal">
             <div className="modal-content">
@@ -62,7 +71,7 @@ class OptionsModal extends Component {
                     </div>
                 </div>
                 <div className="input-field">
-                    <div className="field-text">目录最大深度<strong className="depth-number red-text">{depth}</strong></div>
+                    <div className="field-text">目录最大深度<strong className="depth-number red-text">{depth}</strong>{depthNote}</div>
                     <div className="field-line">
                         <p className="range-field">
                           <input type="range" min="1" max="10" value={depth} onChange={this.handleRangeChange} />
@@ -83,7 +92,8 @@ class OptionsModal extends Component {
 function mapStateToProps(state) {
     return {
         depth: state.option.display.depth,
-        indent: state.option.display.indent
+        indent: state.option.display.indent,
+        actualDepth: state.option.actual.depth
     };
 }
 
@@ -93,7 +103,8 @@ function mapDispatchToProps(dispatch) {
         changeIndentDisplay: (value) => dispatch(setIndentDisplay(value)),
         submitDisplay: (value) => dispatch(submitDisplay(value)),
         resetOptionDisplay: () => dispatch(resetOptionDisplay()),
-        restoreDisplay: () => dispatch(restoreDisplay())
+        restoreDisplay: () => dispatch(restoreDisplay()),
+        refreshReader: () => dispatch(refreshReader())
     };
 }
 
