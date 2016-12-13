@@ -9,7 +9,8 @@ const loadingDrop = () => ({
 
 const finishRead = (output) => ({
     type: "FINISH_READ",
-    output: output
+    content: output.content,
+    rootName: output.rootName
 });
 
 export default {

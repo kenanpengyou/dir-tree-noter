@@ -25,17 +25,29 @@ class Header extends Component {
     publishTrees(trees, nextProps){
         const {indentType} = nextProps || this.props;
 
+        // todo: save these as presets
+        let output = {
+            content: ">_<",
+            rootName: "dir-tree"
+        };
+
         if(trees instanceof Object){
             let treeString = treeify.exec(trees, indentType);
-            this.props.finish(treeString);
+
+            if(Object.keys(trees).length === 1){
+                output.rootName = Object.keys(trees)[0];
+            }
+
+            output.content = treeString;
             this.lastTrees = trees;
         }else{
 
             // todo: i18n
             Materialize.toast("不支持的浏览器", 4000);
-            this.props.finish(">_<");
             this.lastTrees = null;
         }
+
+        this.props.finish(output);
     }
 
     execReader(dataTransfer) {

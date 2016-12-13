@@ -35,7 +35,8 @@ class Editor extends Component {
     }
 
     render(){
-        const {isLoading, isComplete} = this.props;
+        const {isLoading, isComplete} = this.props,
+        fileName = this.props.rootName + ".txt";
         var editorMain = null;
 
         if(isComplete){
@@ -48,7 +49,7 @@ class Editor extends Component {
                     </div>
                     <div className="download-container center-align">
                         <a href="javascript:" className="waves-effect waves-light btn-large btn-copy z-depth-2" onClick={this.handleCopyClick}><i className="material-icons left">description</i>复制</a>
-                        <a download="dir-tree-noter.txt" href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>下载</a>
+                        <a download={fileName} href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>下载</a>
                     </div>
                     <div className="preloader-container valign-wrapper">
                       <div className="valign">
@@ -74,7 +75,8 @@ function mapStateToProps(state) {
     return {
         isLoading: state.upload.isLoading,
         isComplete: state.upload.isComplete,
-        content: state.editor.content
+        content: state.editor.content,
+        rootName: state.editor.rootName
     };
 }
 
