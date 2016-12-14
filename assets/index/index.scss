@@ -41,7 +41,17 @@
     transform: translate(-50%, -50%);
 }
 .content-container{
+    position: relative;
     margin-bottom: 10px;
+}
+.content-container.is-loading:after{
+    position: absolute;
+    background: rgba(0, 0, 0, .3);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
 }
 .editor-content{
     min-height: 150px;

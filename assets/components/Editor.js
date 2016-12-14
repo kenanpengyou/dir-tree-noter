@@ -39,12 +39,18 @@ class Editor extends Component {
         fileName = this.props.rootName + ".txt";
         var editorMain = null;
 
-        if(isComplete){
+        if(isComplete || isLoading){
             const {content} = this.props,
             downloadURL = creator.makeTextFile(content);
+
+            let containerClass = "content-container";
+            if(isLoading){
+                containerClass += " is-loading";
+            }
+
             editorMain = (
                 <div className="editor-main">
-                    <div className="content-container">
+                    <div className={containerClass}>
                         <EditorContent ref="editorContent"/>
                     </div>
                     <div className="download-container center-align">
