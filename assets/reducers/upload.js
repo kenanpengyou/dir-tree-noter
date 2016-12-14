@@ -14,7 +14,8 @@ export default function(state = initialState, action) {
         case "LOADING_DROP":
             return Object.assign({}, state, {
                 isBoxActive: false,
-                isLoading: true
+                isLoading: true,
+                isComplete: false
             });
         case "FINISH_READ":
             return Object.assign({}, state, {

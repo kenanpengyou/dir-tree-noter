@@ -46,10 +46,10 @@ class OptionsModal extends Component {
     }
 
     render(){
-        const {depth, indent, actualDepth} = this.props;
+        const {depth, indent, actualDepth, isComplete} = this.props;
         var depthNote = null;
 
-        if(actualDepth !== depth){
+        if(isComplete && actualDepth !== depth){
             depthNote = (
                 <span className="option-note orange-text">← 此项变更需要重新丢入目录以生效</span>
             );
@@ -93,7 +93,8 @@ function mapStateToProps(state) {
     return {
         depth: state.option.display.depth,
         indent: state.option.display.indent,
-        actualDepth: state.option.actual.depth
+        actualDepth: state.option.actual.depth,
+        isComplete: state.upload.isComplete
     };
 }
 
