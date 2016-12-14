@@ -6,9 +6,7 @@
     "start": "node server",
     "build": "webpack --config webpack.production.config.js -p",
     "release": "npm run build & http-server -p 8000",
-    "clean-deploy": "rm -rf public",
     "pre-deploy": "git clone https://github.com/kenanpengyou/dir-tree-noter.git --branch gh-pages public",
-    "deploy": "npm run build & cd public & git add --all && git commit -m 'update gh-pages with deploy script' & git push"
   },
   "repository": {
     "type": "git",
