@@ -6,7 +6,7 @@
     "start": "node server",
     "build": "webpack --config webpack.production.config.js -p",
     "release": "npm run build & http-server -p 8000",
-    "pre-deploy": "git clone https://github.com/kenanpengyou/dir-tree-noter.git --branch gh-pages public",
+    "pre-deploy": "git clone https://github.com/kenanpengyou/dir-tree-noter.git --branch gh-pages public"
   },
   "repository": {
     "type": "git",
