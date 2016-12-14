@@ -89,7 +89,7 @@ class Header extends Component {
         return (
             <div className="upload-area brown darken-4">
                 <div className="container">
-                    <h2 className="center-align grey-text text-lighten-2">dir tree noter</h2>
+                    <h2 className="center-align grey-text text-lighten-2">Dir Tree Noter</h2>
                     <div className="row drop-container">
                         <div className="col s12 m6 l4 offset-m3 offset-l4">
                             <div className={boxClass} onDragEnter={this.handleDragEnter}
