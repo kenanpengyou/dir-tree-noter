@@ -30,7 +30,8 @@ var productionConfig = [{
     },
     plugins: [
         new CleanWebpackPlugin(['public'], {
-            verbose: true
+            verbose: true,
+            exclude: ['.git']
         }),
         new ExtractTextPlugin('index.css', {
             allChunks: true

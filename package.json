@@ -6,8 +6,9 @@
     "start": "node server",
     "build": "webpack --config webpack.production.config.js -p",
     "release": "npm run build & http-server -p 8000",
-    "gh-pages": "git subtree split --prefix public -b gh-pages & git push -f origin gh-pages:gh-pages & git branch -D gh-pages ",
-    "github-deploy": "npm run build & npm run gh-pages"
+    "clean-deploy": "rm -rf public",
+    "pre-deploy": "git clone https://github.com/kenanpengyou/dir-tree-noter.git --branch gh-pages public",
+    "deploy": "npm run build & cd public & git add --all && git commit -m 'update gh-pages with deploy script' & git push"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "clean-webpack-plugin": "^0.1.9",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
+    "deploy-to-git": "^0.1.1",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "expose-loader": "^0.7.1",
