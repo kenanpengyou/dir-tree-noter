@@ -1,11 +1,13 @@
 {
   "name": "dir-tree-noter",
   "version": "1.0.0",
-  "description": "Generate a proper directory tree codes with comments for you.",
+  "description": "Generate proper directory tree codes for you.",
   "scripts": {
     "start": "node server",
     "build": "webpack --config webpack.production.config.js -p",
-    "release": "npm run build & http-server -p 8000"
+    "release": "npm run build & http-server -p 8000",
+    "gh-pages": "git subtree split --prefix public -b gh-pages & git push -f origin gh-pages:gh-pages & git branch -D gh-pages ",
+    "github-deploy": "npm run build & npm run gh-pages"
   },
   "repository": {
     "type": "git",

@@ -45,7 +45,9 @@ var productionConfig = [{
             template: './index.ejs'
         }),
         new CopyWebpackPlugin([
-            { from: 'vendor'}
+            { from: 'vendor'},
+            { from: 'README.md'},
+            { from: 'CNAME'}
         ])
     ],
     postcss: [
