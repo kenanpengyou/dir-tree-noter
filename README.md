@@ -1,2 +1,2 @@
-# dir-tree-noter
-Generate a proper directory tree codes with comments for you.
+# Dir Tree Noter
+Generate a proper directory tree codes for you.
