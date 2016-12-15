@@ -134,11 +134,14 @@ var calcDepth = function(path){
 
 // old prefixed API implemented in Chrome 11+ as well as array fallback
 var arrayApi = function(input, cb) {
-    var files = [];
+    var files = [],
+        trees = {};
     [].slice.call(input.files).forEach(function(file) {
-      files.push(file.webkitRelativePath || file.name);
+        var filePath = file.webkitRelativePath || file.name;
+        files.push(filePath);
+        trees[file.name] = trees[file.name] || "file";
     });
-    cb(files);
+    cb(files, trees);
 };
 
 dirReader.exec = function(input, options) {

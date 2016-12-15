@@ -60,7 +60,7 @@ class OptionsModal extends Component {
             <div className="modal-content">
                 <h5 className="blue-text text-darken-2">配置</h5>
                 <div className="input-field">
-                    <div className="field-text">缩进类型</div>
+                    <div className="field-text"><span className="tooltipped" data-tooltip="目录树代码使用的缩进类型" data-delay="50" data-position="right">缩进类型</span></div>
                     <div className="option-line">
                         <input className="with-gap" name="indent" type="radio" value="space" id="indent_space" checked={indent === 'space'} onChange={this.handleIndentChange} />
                         <label htmlFor="indent_space">空格</label>
@@ -71,7 +71,7 @@ class OptionsModal extends Component {
                     </div>
                 </div>
                 <div className="input-field">
-                    <div className="field-text">目录最大深度<strong className="depth-number red-text">{depth}</strong>{depthNote}</div>
+                    <div className="field-text"><span className="tooltipped" data-tooltip="决定读取目录时最多到第几层子目录" data-delay="50" data-position="right">目录读取深度<strong className="depth-number red-text">{depth}</strong></span>{depthNote}</div>
                     <div className="field-line">
                         <p className="range-field">
                           <input type="range" min="1" max="10" value={depth} onChange={this.handleRangeChange} />

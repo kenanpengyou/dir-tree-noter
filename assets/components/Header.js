@@ -9,7 +9,6 @@ class Header extends Component {
         super(props);
 
         this.handleDragEnter = this.handleDragEnter.bind(this);
-        this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDrop = this.handleDrop.bind(this);
         this.lastTrees = null;
@@ -20,6 +19,24 @@ class Header extends Component {
              this.props.indentType !== nextProps.indentType){
             this.publishTrees(this.lastTrees, nextProps);
         }
+    }
+
+    componentDidMount(){
+        this.dropEl = $(this.refs.dropArea);
+
+        // Prevent any unwanted behaviors for the assigned events across browsers.
+        // Firefox will open a new tab if any file is dropped inside, this cannot be prevented with React's SyntheticEvent, use jQuery instead.
+        this.dropEl.on("drag dragstart dragend dragover dragenter dragleave drop", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        })
+        .on("dragenter", this.handleDragEnter)
+        .on("dragleave", this.handleDragLeave)
+        .on("drop", this.handleDrop);
+    }
+
+    componentWillUnmount(){
+        this.dropEl.off();
     }
 
     publishTrees(trees, nextProps){
@@ -64,11 +81,7 @@ class Header extends Component {
     }
 
     handleDragEnter(e) {
-        e.preventDefault();
         this.props.dragOver();
-    }
-    handleDragOver(e) {
-        e.preventDefault();
     }
 
     handleDragLeave(e) {
@@ -76,8 +89,7 @@ class Header extends Component {
     }
 
     handleDrop(e) {
-        e.preventDefault();
-        this.execReader(e.dataTransfer);
+        this.execReader(e.originalEvent.dataTransfer);
     }
 
     render() {
@@ -92,9 +104,9 @@ class Header extends Component {
                     <h2 className="center-align grey-text text-lighten-2">Dir Tree Noter</h2>
                     <div className="row drop-container">
                         <div className="col s12 m6 l4 offset-m3 offset-l4">
-                            <div className={boxClass} onDragEnter={this.handleDragEnter}
-                             onDragOver={this.handleDragOver}
-                              onDragLeave={this.handleDragLeave}
+                        <div ref="dropArea" className={boxClass}
+                            onDragEnter={this.handleDragEnter}
+                             onDragLeave={this.handleDragLeave}
                                onDrop={this.handleDrop}>
                                 <div className="drop-label valign brown-text text-lighten-2">drop your dir here</div>
                             </div>
