@@ -119,8 +119,9 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
+    state = state.toJS();
+
     return {
-        isBoxActive: state.upload.isBoxActive,
         maxDepth: state.option.actual.depth,
         indentType: state.option.actual.indent,
         needRefresh: state.upload.needRefresh,

@@ -1,50 +1,44 @@
 import optionPresets from "../presets/option";
+import Immutable from "immutable";
 
-const initialState = {
-    display: Object.assign({}, optionPresets),
-    actual: Object.assign({}, optionPresets)
-};
+const initialState = Immutable.Map({
+    display: Immutable.Map(optionPresets),
+    actual: Immutable.Map(optionPresets)
+});
 
 export default function(state = initialState, action) {
-    let display = Object.assign({}, state.display),
-        actual = Object.assign({}, state.actual);
+    let display = state.get("display"),
+        actual = state.get("actual");
 
     switch (action.type) {
 
         // submit: assign "actual" with "display"
         case "SUBMIT_DISPLAY":
-            actual = Object.assign({}, display);
-            return {
-                display,
-                actual
-            };
+            return state.mergeDeep({
+                actual: display
+            });
         case "SET_DEPTH_DISPLAY":
-            return {
-                display: Object.assign(display, {
+            return state.mergeDeep({
+                display: {
                     depth: action.value
-                }),
-                actual
-            };
+                }
+            });
         case "SET_INDENT_DISPLAY":
-            return {
-                display: Object.assign(display, {
+            return state.mergeDeep({
+                display: {
                     indent: action.value
-                }),
-                actual
-            };
+                }
+            });
         case "RESET_OPTION_DISPLAY":
-            return {
-                display: Object.assign({}, optionPresets),
-                actual
-            };
+            return state.mergeDeep({
+                display: Immutable.Map(optionPresets)
+            });
 
         // restore "display" to "actual"
         case "RESTORE_OPTION_DISPLAY":
-            display = Object.assign({}, actual);
-            return {
-                display,
-                actual
-            };
+            return state.mergeDeep({
+                display: actual
+            });
         default:
             return state;
     }

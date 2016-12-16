@@ -78,6 +78,7 @@ class Editor extends Component {
     }
 
 function mapStateToProps(state) {
+    state = state.toJS();
     return {
         isLoading: state.upload.isLoading,
         isComplete: state.upload.isComplete,

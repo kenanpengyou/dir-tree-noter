@@ -1,5 +1,4 @@
-
-import { combineReducers } from "redux";
+import {combineReducers} from "redux-immutable";
 import upload from "./upload";
 import editor from "./editor";
 import option from "./option";

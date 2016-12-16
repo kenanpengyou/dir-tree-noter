@@ -22,6 +22,8 @@ class EditorContent extends Component {
 }
 
 function mapStateToProps(state) {
+    state = state.toJS();
+
     return {
         content: state.editor.content
     };
