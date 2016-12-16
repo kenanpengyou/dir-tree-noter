@@ -12,6 +12,7 @@ class Editor extends Component {
 
         this.handleOptionsClick = this.handleOptionsClick.bind(this);
         this.handleCopyClick = this.handleCopyClick.bind(this);
+        this.isDownloadAttrSupported = ("download" in document.createElement("a"));
     }
 
     handleOptionsClick(e) {
@@ -41,6 +42,7 @@ class Editor extends Component {
 
         if(isComplete || isLoading){
             const {content} = this.props,
+            isDownloadAttrSupported = this.isDownloadAttrSupported,
             downloadURL = creator.makeTextFile(content);
 
             let containerClass = "content-container";
@@ -55,7 +57,7 @@ class Editor extends Component {
                     </div>
                     <div className="download-container center-align">
                         <a href="javascript:" className="waves-effect waves-light btn-large btn-copy z-depth-2" onClick={this.handleCopyClick}><i className="material-icons left">description</i>复制</a>
-                        <a download={fileName} href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>下载</a>
+                        { isDownloadAttrSupported ? <a download={fileName} href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>下载</a> : null }
                     </div>
                     <div className="preloader-container valign-wrapper">
                       <div className="valign">

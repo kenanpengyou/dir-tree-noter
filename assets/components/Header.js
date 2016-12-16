@@ -48,7 +48,7 @@ class Header extends Component {
             rootName: "dir-tree"
         };
 
-        if(trees instanceof Object){
+        if(trees instanceof Object && Object.keys(trees).length > 0){
             let treeString = treeify.exec(trees, indentType);
 
             if(Object.keys(trees).length === 1){
@@ -125,7 +125,8 @@ function mapStateToProps(state) {
         maxDepth: state.option.actual.depth,
         indentType: state.option.actual.indent,
         needRefresh: state.upload.needRefresh,
-        isComplete: state.upload.isComplete
+        isComplete: state.upload.isComplete,
+        isBoxActive: state.upload.isBoxActive
     };
 }
 
