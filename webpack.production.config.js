@@ -48,7 +48,8 @@ var productionConfig = [{
         new CopyWebpackPlugin([
             { from: 'vendor'},
             { from: 'README.md'},
-            { from: 'CNAME'}
+            { from: 'CNAME'},
+            { from: 'ie.html'}
         ])
     ],
     postcss: [
