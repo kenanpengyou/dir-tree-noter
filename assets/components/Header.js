@@ -19,6 +19,9 @@ class Header extends Component {
              this.props.indentType !== nextProps.indentType){
             this.publishTrees(this.lastTrees, nextProps);
         }
+        if(!this.props.optionActual.equals(nextProps.optionActual)){
+            Materialize.toast("配置已更新", 4000);
+        }
     }
 
     componentDidMount(){
@@ -119,9 +122,11 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
+    let optionActual = state.getIn(["option", "actual"]);
     state = state.toJS();
 
     return {
+        optionActual: optionActual,
         maxDepth: state.option.actual.depth,
         indentType: state.option.actual.indent,
         needRefresh: state.upload.needRefresh,
