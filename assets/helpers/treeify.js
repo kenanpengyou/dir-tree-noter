@@ -53,7 +53,7 @@ function growBranch(key, root, last, lastStates, callback) {
 }
 
 treeify.exec = function(obj, indentType) {
-    var tree = " ",
+    var tree = "",
         keys = Object.keys(obj),
         properObj;
 
