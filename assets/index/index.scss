@@ -104,3 +104,32 @@
 .option-note{
     margin-left: 10px;
 }
+
+/* browser not support */
+.browser-note{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    margin: -100px 0 0 -100px;
+    left: 50%;
+    top: 50%;
+
+    .note-actor{
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+        background: url(hopou.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .note-text{
+        text-align: center;
+    }
+}
+@media
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi){
+    .browser-note .note-actor{
+        width: 80px;
+        height: 80px;
+    }
+}
