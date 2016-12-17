@@ -49,7 +49,8 @@ var productionConfig = [{
             { from: 'vendor'},
             { from: 'README.md'},
             { from: 'CNAME'},
-            { from: 'ie.html'}
+            { from: 'ie.html'},
+            { from: 'favicon.ico'}
         ])
     ],
     postcss: [
