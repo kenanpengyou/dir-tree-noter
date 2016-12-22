@@ -16,7 +16,7 @@ module.exports = {
     devtool: 'eval-source-map',
     output: {
         filename: 'index.bundle.js',
-        path: path.resolve('public'),
+        path: path.resolve(__dirname, 'public'),
         publicPath: publicPath
     },
     module: {
@@ -32,7 +32,7 @@ module.exports = {
         }, {
             test: /\.js$/,
             loaders: ['react-hot', 'babel'],
-            include: path.resolve('assets')
+            include: path.resolve(__dirname, 'assets')
         }]
     },
     plugins: [

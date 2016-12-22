@@ -10,7 +10,7 @@ var productionConfig = [{
     entry: './assets/index',
     output: {
         filename: 'index.bundle.js',
-        path: path.resolve('public')
+        path: path.resolve(__dirname, 'public')
     },
     module: {
         loaders: [{
@@ -25,7 +25,7 @@ var productionConfig = [{
         }, {
             test: /\.js$/,
             loader: 'babel',
-            include: path.resolve('assets')
+            include: path.resolve(__dirname, 'assets')
         }]
     },
     plugins: [
