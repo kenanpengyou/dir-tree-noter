@@ -7,7 +7,7 @@ It may be helpful anytime when you are going to describe a directory structure t
 
 ## How to use
 
-![manual](https://github.com/kenanpengyou/dir-tree-noter/tree/master/intro/manual.png)
+![manual](https://raw.githubusercontent.com/kenanpengyou/dir-tree-noter/master/intro/manual.png)
 
 ## Key libraries & tools
 
