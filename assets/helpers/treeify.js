@@ -41,7 +41,7 @@ function growBranch(key, root, last, lastStates, callback) {
 
     // can we descend into the next item?
     if (!circular && typeof root === "object") {
-      var keys = Object.keys(root);
+      var keys = Object.keys(root).sort();
       keys.forEach(function(branch){
         // the last key is always printed with a different prefix, so we"ll need to know if we have it
         lastKey = ++index === keys.length;

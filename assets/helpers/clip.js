@@ -30,7 +30,7 @@ clip.copySelectionText = function() {
 };
 
 clip.clearSelection = function(){
-    let selection = window.getSelection();
+    const selection = window.getSelection();
     selection.removeAllRanges();
 };
 

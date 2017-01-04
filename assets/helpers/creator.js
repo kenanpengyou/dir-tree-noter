@@ -4,7 +4,7 @@
 
 const creator = {};
 
-var textFile = null;
+let textFile = null;
 
 creator.makeTextFile = function(text) {
     var data = new Blob([text], {type: "text/plain"});
