@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {detectDrop, loadingDrop, finishRead} from "../actions";
 import dirReader from "../helpers/dirReader";
 import treeify from "../helpers/treeify";
+import outputPresets from "../presets/output";
 
 class Header extends Component {
     constructor(props) {
@@ -44,12 +45,7 @@ class Header extends Component {
 
     publishTrees(trees, nextProps){
         const {indentType} = nextProps || this.props;
-
-        // todo: save these as presets
-        let output = {
-            content: ">_<",
-            rootName: "dir-tree"
-        };
+        let output = outputPresets;
 
         if(trees instanceof Object && Object.keys(trees).length > 0){
             let treeString = treeify.exec(trees, indentType);
