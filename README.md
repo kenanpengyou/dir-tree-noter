@@ -1,4 +1,4 @@
-![Dir Tree Noter cover](http://kenanpengyou.github.io/assets/used-images/projects/dir-tree-noter/dir_tree_noter_cover.png)
+![Dir Tree Noter cover](https://raw.githubusercontent.com/kenanpengyou/dir-tree-noter/master/intro/dir_tree_noter_cover.png)
 
 # Dir Tree Noter
 Generate proper directory tree codes for you. 
