@@ -4,7 +4,7 @@ import Preloader from "./Preloader";
 import EditorContent from "./EditorContent";
 import clip from "../helpers/clip";
 import creator from "../helpers/creator";
-import i18next from "../i18n";
+import i18n from "../i18n";
 
 class Editor extends Component {
 
@@ -57,8 +57,8 @@ class Editor extends Component {
                         <EditorContent ref="editorContent"/>
                     </div>
                     <div className="download-container center-align">
-                        <a href="javascript:" className="waves-effect waves-light btn-large btn-copy z-depth-2" onClick={this.handleCopyClick}><i className="material-icons left">description</i>{i18next.t("copy")}</a>
-                        { isDownloadAttrSupported ? <a download={fileName} href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>{i18next.t("download")}</a> : null }
+                        <a href="javascript:" className="waves-effect waves-light btn-large btn-copy z-depth-2" onClick={this.handleCopyClick}><i className="material-icons left">description</i>{i18n.t("copy")}</a>
+                        { isDownloadAttrSupported ? <a download={fileName} href={downloadURL} className="waves-effect waves-light btn-large btn-download z-depth-2"><i className="material-icons left">play_for_work</i>{i18n.t("download")}</a> : null }
                     </div>
                     <div className="preloader-container valign-wrapper">
                       <div className="valign">
@@ -72,7 +72,7 @@ class Editor extends Component {
         return (
             <div className="container editor-area">
                 <div className="config-container right-align">
-                    <a href="javascript:" className="waves-effect waves-light btn btn-option" onClick={this.handleOptionsClick}><i className="material-icons left">settings</i>{i18next.t("config")}</a>
+                    <a href="javascript:" className="waves-effect waves-light btn btn-option" onClick={this.handleOptionsClick}><i className="material-icons left">settings</i>{i18n.t("config")}</a>
                 </div>
                 { editorMain }
             </div>

@@ -105,6 +105,29 @@
     margin-left: 10px;
 }
 
+/* footer i18n */
+.site-footer .extra{
+    padding-top: 7px;
+}
+.i18n-button{
+    display: inline-block;
+    min-width: 100px;
+    padding: 0 25px;
+    height: 36px;
+    border-bottom: 2px solid #ee6e73;
+    margin-right: 20px;
+    color: inherit;;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    opacity: .6;
+    transition: opacity .25s;
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
 /* browser not support */
 .browser-note{
     position: absolute;

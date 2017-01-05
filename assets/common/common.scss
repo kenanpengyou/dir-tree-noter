@@ -19,12 +19,15 @@ html {
 /* footer */
 .site-footer {
     height: 50px;
-    line-height: 50px;
 }
 .github-link {
+    display: inline-block;
     width: 32px;
     height: 32px;
-    margin: 9px 0 0 0;
     background: url(./github_logo.svg) no-repeat;
     background-size: 100% auto;
+    vertical-align: middle;
+}
+.copyright {
+    line-height: 50px;
 }
