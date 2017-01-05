@@ -29,9 +29,9 @@ class Editor extends Component {
             clip.clearSelection();
 
             if(copySuccess){
-                Materialize.toast("已复制", 4000);
+                Materialize.toast(i18n.t("copyComplete"), 4000);
             }else{
-                Materialize.toast("不支持的浏览器", 4000);
+                Materialize.toast(i18n.t("browserNotSupported"), 4000);
             }
         }
     }

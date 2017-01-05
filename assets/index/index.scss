@@ -120,12 +120,6 @@
     text-align: center;
     line-height: 36px;
     vertical-align: middle;
-    opacity: .6;
-    transition: opacity .25s;
-
-    &:hover{
-        opacity: 1;
-    }
 }
 
 /* browser not support */

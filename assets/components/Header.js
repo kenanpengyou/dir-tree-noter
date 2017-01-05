@@ -4,6 +4,7 @@ import {detectDrop, loadingDrop, finishRead} from "../actions";
 import dirReader from "../helpers/dirReader";
 import treeify from "../helpers/treeify";
 import outputPresets from "../presets/output";
+import i18n from "../i18n";
 
 class Header extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class Header extends Component {
             this.publishTrees(this.lastTrees, nextProps);
         }
         if(!this.props.optionActual.equals(nextProps.optionActual)){
-            Materialize.toast("配置已更新", 4000);
+            Materialize.toast(i18n.t("configUpdated"), 4000);
         }
     }
 
@@ -59,7 +60,7 @@ class Header extends Component {
         }else{
 
             // todo: i18n
-            Materialize.toast("不支持的浏览器", 4000);
+            Materialize.toast(i18n.t("browserNotSupported"), 4000);
             this.lastTrees = null;
         }
 

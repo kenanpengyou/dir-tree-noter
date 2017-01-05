@@ -1,5 +1,17 @@
 {
-  "config": "config",
-  "copy": "copy",
-  "download": "download"
+  "config": "Config",
+  "copy": "Copy",
+  "download": "Download",
+  "copyComplete": "Copy complete.",
+  "indentType": "Indent Type",
+  "space": "Space",
+  "tab": "Tab",
+  "analysisDepth": "Analysis Depth",
+  "reset": "Reset",
+  "confirm": "Confirm",
+  "browserNotSupported": "The browser is not supported.",
+  "configUpdated": "Config has been updated.",
+  "redropToEnforce": "If this is modified, redropping is needed for taking effect.",
+  "tipsForIndentType": "The indent type of the output code string.",
+  "tipsForDepth": "To decide how deep the dir will be loaded."
 }
