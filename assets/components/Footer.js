@@ -14,14 +14,14 @@ class Footer extends Component {
         return (
             <div className="container">
                 <div className="extra right">
-                    <a className="i18n-button dropdown-button" href="#0" data-activates="i18n-dropdown">{currentLangName}</a>
+                    <a className="i18n-button dropdown-button" href="javascript:" data-activates="i18n-dropdown">{currentLangName}</a>
                     <a className="github-link" href="https://github.com/kenanpengyou/dir-tree-noter"></a>
                     <ul id="i18n-dropdown" className="dropdown-content">
                         {dropdownItems}
                     </ul>
                 </div>
                 <div className="copyright">
-                    &copy; 2016 <a href="http://acgtofe.com">Tea Works</a>.
+                    &copy; 2017 <a href="http://acgtofe.com">Tea Works</a>.
                 </div>
             </div>
         );
