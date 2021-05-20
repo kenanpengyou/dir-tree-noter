@@ -35,7 +35,7 @@ var calcDepth = function(path){
      var iterate = function(entries, path, resolve) {
          var promises = [];
 
-         if(calcDepth(path) > maxDepth){
+         if(calcDepth(path) > maxDepth || !entries.length){
              assignToObject(trees, path);
              return resolve();
          }
@@ -95,6 +95,13 @@ var calcDepth = function(path){
 
          readEntries(entry, 0, 0, function(entries) {
              var promises = [];
+
+             // if the directory is empty (no entries), the path should be recorded
+             if (!entries.length) {
+                assignToObject(trees, path);
+                return resolve();
+             }
+
              entries.forEach(function(entry) {
                  promises.push(new Promise(function(resolve) {
                      if (entry.isFile) {
@@ -103,13 +110,13 @@ var calcDepth = function(path){
                              files.push(p);
                              assignToObject(trees, path, entry.name);
                              resolve();
-                         }, resolve.bind());
+                         }, resolve.bind(null));
                      } else if (entry.isDirectory) {
                          readDirectory(entry, path + "/" + entry.name, resolve);
                      }
                  }));
              });
-             Promise.all(promises).then(resolve.bind());
+             Promise.all(promises).then(resolve.bind(null));
          });
      }
 
@@ -122,7 +129,7 @@ var calcDepth = function(path){
                          files.push(file.name);
                          trees[file.name] = trees[file.name] || "file";
                          resolve();
-                     }, resolve.bind());
+                     }, resolve.bind(null));
                  } else if (entry.isDirectory) {
                      readDirectory(entry, null, resolve);
                  }
